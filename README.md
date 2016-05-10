@@ -1,5 +1,5 @@
 # Spritesheet-Animation-Utility
-Just a prototype so far. It is not very easy to use yet.
+Just a prototype so far. It is not very easy to use yet and it is very buggy.
 
 The purpose of this utility is to build a spritesheet made of uniform sized frames. This makes writing code for the spritesheet a lot easier.
 
@@ -25,6 +25,8 @@ The (FPS) animation speed is what will be exported for the selected animation. T
 
 There is an example project json file in the examples folder. Load up the index.html and import the file using the file input on the top left of the page.
 This example spritesheet was built on a file I found online from a ripped or recreated street fighter 2 sprite of Ryu.
+
+You will have to select the animations starting from the end and clicking the "process spacing" button for each one. This is a bug. The collision boxes are also messed up on import because of the incorrect frame sizes. This is a related bug.
 
 # Note
 This project was built for a simple game I made while I was learning iOS programming. It was an extremely rushed project. This is some of the worst JavaScript code I have ever written, but it worked.
