@@ -1,0 +1,345 @@
+body, html {
+	margin:0;
+	padding:0;
+}
+body {
+	font-family:Arial;
+}
+body:before {
+	content: "";
+	position: fixed;
+	top: -10px;
+	left: 0;
+	width: 100%;
+	height: 10px;
+	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	z-index: 100;
+}
+* {
+	box-sizing:border-box;
+}
+a {
+	color:#000;
+	text-decoration:none;
+}
+.clear-fix {
+	clear:both;
+}
+
+.shadow-top {
+	display:none;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0px 10px 10px -10px #000 inset;
+    height: 20px;
+    margin-bottom: -20px;
+}
+
+.shadow-bottom {
+	display:none;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0px -10px 10px -10px #000 inset;
+    height: 20px;
+    margin-top: -20px;
+}
+
+#sprite-editor {
+	max-width:800px;
+	margin:0 auto;
+	padding:10px;
+	border:1px solid #333;
+}
+#sprite-editor .middle {
+	text-align:center;
+}
+#anim-preview-cont {
+	padding:20px 0;
+}
+#anim-preview {
+	position:relative;
+	display:inline-block;
+	text-align:center;
+	border:3px double #000;
+	transform-origin:top center;
+}
+#anim-preview.selected {
+	border-color:#BD0000;
+	border-style:solid;
+}
+#anim-preview img {
+}
+#anim-preview .collider {
+	display:none;
+	position:absolute;
+	top:0;
+	left:0;
+	border:1px solid #000;
+	background-color:rgba(0,0,0, 0.1);
+}
+#anim-preview .collider.red {
+	border-color:#FF0000;
+	background-color:rgba(255,0,0, 0.1);
+	z-index:10;
+}
+#anim-preview .collider.blue {
+	border-color:#0000FF;
+	background-color:rgba(0,0,255, 0.1);
+}
+#anim-preview.show-body-collider #anim-preview-body-collider {
+	display:block;
+}
+#anim-preview.show-attack-collider #anim-preview-attack-collider {
+	display:block;
+}
+#preview-controls {
+	position:relative;
+}
+#preview-controls .control {
+	float:right;
+}
+#preview-controls .control-tab {
+	float:left;
+	padding:5px 8px;
+	margin-right:5px;
+	background-color:#FFF;
+	color:#333;
+	border:1px solid #CCC;
+	border-radius:5px 5px 0 0;
+	cursor:pointer;
+}
+#preview-controls .control-tab.selected, #preview-controls .control-tab:hover {
+	color:#333;
+	border-color:#333;
+}
+
+#sprite-editor .bottom {
+	position:relative;
+}
+
+#anims-cont {
+	height:500px;
+	margin-left:110px;
+}
+#anims {
+	height:500px;
+	padding:12px 5px;
+	overflow-y:auto;
+}
+#editor-controls {
+	position:absolute;
+	width:100px;
+}
+#anims .dropzone {
+	position:relative;
+	min-height:100px;
+	padding:10px;
+	margin-bottom:10px;
+	border:3px dashed #CCC;
+	background-color:#FEFEFE;
+	overflow:hidden;
+}
+#anims .dropzone.selected {
+	border-color:#BD0000;
+	border-left:0;
+}
+#anims .dropzone #selected-anim-label {
+	position:absolute;
+	top:0;
+	left:0;
+	width:10px;
+	height:100%;
+	background-color:#BD0000;
+}
+#anims .dropzone .note {
+	width:100%;
+	height:100%;
+	padding:24px;
+	text-align:center;
+	font-family:consolas;
+	font-size:24px;
+	font-weight:bold;
+	color:#CCC;
+}
+#anims .dropzone.selected .note {
+	color:#BD0000;
+}
+#anims .dropzone .options {
+	position:absolute;
+	top:0;
+	right:0;
+	display:none;
+	padding:5px;
+}
+#anims .dropzone.selected:hover .options {
+	display:block;
+}
+#anims .dropzone .options .button {
+	margin-bottom:5px;
+}
+
+.sprite {
+	display:block;
+	float:left;
+	border:1px solid #999;
+}
+.sprite.current {
+	border-color:#0000FF;
+	background-color:rgba(0,0,255, 0.1);
+}
+.sprite.selected, .sprite:hover {
+	border-color:#BD0000;
+	background-color:rgba(176,0,0, 0.1);
+}
+
+
+a.button {
+	display:block;
+	padding:6px 6px;
+	color:#333;
+	font-size:14px;
+	border:1px solid #CCC;
+	border-radius:5px;
+	text-align:center;
+}
+a.button:hover {
+	background-color:#FEFEFE;
+	border:1px solid #333;
+}
+
+.control {
+	
+}
+.control .label {
+	font-size:12px;
+	font-weight:bold;
+	padding-bottom:3px;
+	text-align:center;
+}
+.control.inline-buttons .button, .control.inline-buttons .val {
+	display:inline-block;
+	height:25px;
+	margin-right:5px;
+}
+.control.inline-buttons .val {
+	min-width:50px;
+	height:25px;
+	padding:3px;
+	vertical-align:bottom;
+	border:1px solid #999;
+	background-color:#FFF;
+	text-align:center;
+}
+.control.star-buttons {
+	text-align:center;
+}
+.control.star-buttons .button, .control.star-buttons .spacer {
+	display:inline-block;
+	width:25px;
+	height:25px;
+	margin:2px;
+	vertical-align:middle;
+}
+#frame-edit-controls {
+	position:absolute;
+	top:100%;
+	right:0;
+	padding-top:10px;
+}
+#collider-edit-controls {
+	position:absolute;
+	top:0;
+	left:0;
+	padding-top:10px;
+}
+#collider-edit-controls .control {
+	float:none;
+}
+
+/* Body and Attack Collider Options */
+#body-collider-options, #attack-collider-options {
+	display:none;
+	float:left;
+	padding-top:10px;
+	padding-left:5px;
+}
+#body-collider-options {
+	border-left:3px solid blue;
+}
+#attack-collider-options {
+	border-left:3px solid red;
+}
+/************************************************************/
+
+/* Export Dialog */
+#export-info-wrapper {
+	position:fixed;
+	top:calc(50% - 200px);
+	left:0;
+	display:none;
+	width: 100%;
+	padding:100px 0;
+	z-index: 100000;
+	background-color: rgba(255,255,255,0.85);
+	border-top:1px solid #999;
+	border-bottom:1px solid #999;
+}
+#export-info {
+	position:relative;
+	width:500px;
+	height:200px;
+	margin:0 auto;
+	background-color:#FFF;
+	border:1px solid #000;
+	border-radius:10px;
+	text-align:center;
+}
+#export-info .close {
+	position:absolute;
+	top:0;
+	right:0;
+	display:block;
+	padding:10px;
+	font-family:consolas;
+	color:#999;
+}
+#export-info .close:hover {
+	color:#000;
+}
+#export-info h4 {
+	margin-bottom:10px;
+}
+#export-info .info {
+}
+#export-info .button {
+	display:inline-block;
+	margin:20px 10px;
+}
+/************************************/
+
+/* canvas */
+#spritesheet-result {
+	margin:100px 0;
+	text-align:center;
+}
+#spritesheet-result  .button {
+	display:inline-block;
+}
+#spritesheet-canvas {
+	display:block;
+	margin:20px auto;
+	border:5px solid #000;
+}
+
+/************************************/
+
+/* fotter */
+#footer {
+	height:400px;
+	background-color:#000;
+	color:#FFF;
+}
+/************************************/
+

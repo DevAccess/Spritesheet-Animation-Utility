@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+	<title>Spritesheet Builder</title>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/script.js"></script>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+<body>
+
+	<h1>Spritesheet Builder</h1>
+	<div id="import-info">
+		<form name="import">
+			<input type="file" id="json-project-file" name="json-project-file" />
+			<button id="import-project-button">Import</button>
+		</form>
+	</div>
+	
+	<div id="export-info-wrapper">
+		<div id="export-info">
+			<a href="#" class="close" onclick="$('#export-info-wrapper').hide(); return false;">X</a>
+			<h3>Download Export Files</h3>
+			<h4>Click on option below to export</h4>
+			<div class="info">
+				Data file is in JSON format.
+			</div>
+			<a href="#" id="data-file" class="button">Data File</a>
+			<a href="#" id="spritesheet-file" class="button">Spritesheet</a>
+		</div>
+	</div>
+	
+	<div id="sprite-editor">
+		<div class="top">
+			<form name="project" autocomplete="false">
+				<label>Project Name</label>
+				<input type="text" id="project-name" value="" autocomplete="false" />
+			</form>
+		</div>
+		<div class="middle">
+			<div id="preview-controls">
+				<div id="preview-anim-speed" class="control inline-buttons">
+					<div class="label">Anim. Speed FPS</div>
+					<a href="#" id="preview-dec-speed" class="button"><</a><div class="val">5</div><a href="#" id="preview-inc-speed" class="button">></a>
+				</div>
+				<div id="preview-anim-zoom" class="control inline-buttons">
+					<div class="label">Zoom Level</div>
+					<a href="#" id="preview-dec-zoom" class="button">-</a><div class="val">1</div><a href="#" id="preview-inc-zoom" class="button">+</a>
+				</div>
+				<div id="preview-anim-play-pause" class="control inline-buttons">
+					<div class="label">Animation</div>
+					<a href="#" id="preview-play" class="button">Play</a>
+					<a href="#" id="preview-pause" class="button">Pause</a>
+				</div>
+				<div class="clear-fix"></div>
+				<div id="frame-edit-controls">
+					<div id="frame-shift" class="control star-buttons">
+						<div class="label">Shift Frame</div>
+						<div><a href="#" id="frame-shift-up" class="button">^</a></div>
+						<div><a href="#" id="frame-shift-left" class="button"><</a><div class="spacer"></div><a href="#" id="frame-shift-right" class="button">></a></div>
+						<div><a href="#" id="frame-shift-down" class="button">v</a></div>
+					</div>
+				</div>
+				<div id="collider-edit-controls" style="display:none;">
+					<div id="body-collider-show-options" class="control-tab">Body Collider (Blue)</div>
+					<div id="attack-collider-show-options" class="control-tab">Attack Collider (Red)</div>
+					<div class="clear-fix"></div>
+					<div id="body-collider-options">
+						<div id="body-collider-width" class="control inline-buttons">
+							<div class="label">Width</div>
+							<a href="#" id="body-collider-dec-width" class="button"><</a><div class="val"></div><a href="#" id="body-collider-inc-width" class="button">></a><a href="#" id="body-collider-inherit-width" class="button">Inherit</a>
+						</div>
+						<div id="body-collider-height" class="control inline-buttons">
+							<div class="label">Height</div>
+							<a href="#" id="body-collider-dec-height" class="button"><</a><div class="val"></div><a href="#" id="body-collider-inc-height" class="button">></a><a href="#" id="body-collider-inherit-height" class="button">Inherit</a>
+						</div>
+						<div id="body-collider-shift" class="control star-buttons">
+							<div class="label">Position</div>
+							<div><a href="#" id="body-collider-shift-up" class="button">^</a></div>
+							<div><a href="#" id="body-collider-shift-left" class="button"><</a><div class="spacer"></div><a href="#" id="body-collider-shift-right" class="button">></a></div>
+							<div><a href="#" id="body-collider-shift-down" class="button">v</a></div>
+						</div>
+					</div>
+					<div id="attack-collider-options">
+						<div id="attack-collider-width" class="control inline-buttons">
+							<div class="label">Width</div>
+							<a href="#" id="attack-collider-dec-width" class="button"><</a><div class="val"></div><a href="#" id="attack-collider-inc-width" class="button">></a><a href="#" id="attack-collider-inherit-width" class="button">Inherit</a>
+						</div>
+						<div id="attack-collider-height" class="control inline-buttons">
+							<div class="label">Height</div>
+							<a href="#" id="attack-collider-dec-height" class="button"><</a><div class="val"></div><a href="#" id="attack-collider-inc-height" class="button">></a><a href="#" id="attack-collider-inherit-height" class="button">Inherit</a>
+						</div>
+						<div id="attack-collider-shift" class="control star-buttons">
+							<div class="label">Position</div>
+							<div><a href="#" id="attack-collider-shift-up" class="button">^</a></div>
+							<div><a href="#" id="attack-collider-shift-left" class="button"><</a><div class="spacer"></div><a href="#" id="attack-collider-shift-right" class="button">></a></div>
+							<div><a href="#" id="attack-collider-shift-down" class="button">v</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="anim-preview-cont">
+				<div id="anim-preview">
+					<img src="" />
+					<div id="anim-preview-body-collider" class="collider blue"></div>
+					<div id="anim-preview-attack-collider" class="collider red"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="bottom">
+			<div id="editor-controls">
+				<a href="#" id="action-add-anim" class="button">Add Anim.</a>
+				<a href="#" id="action-process-spacing" class="button">Process Spacing</a>
+				<a href="#" id="action-save-project" class="button">Save Project</a>
+				<a href="#" id="action-save-project-as" class="button">Save Project As</a>
+				<a href="#" id="action-export" class="button">Export</a>
+			</div>
+		
+			<div id="anims-cont">
+				<div class="shadow-top"></div>
+				<div id="anims">
+				</div>
+				<div class="shadow-bottom"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="spritesheet-result">
+		<a href="#" class="button" id="action-gen-spritesheet">Generate Spritesheet</a> (Done automatically on export)
+		<canvas id="spritesheet-canvas"></canvas>
+	</div>
+	
+	<div id="footer">
+		Copyright 2016
+	</div>
+</body>
+</html>
